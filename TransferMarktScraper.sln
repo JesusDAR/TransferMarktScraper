@@ -1,0 +1,31 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.31613.86
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TransferMarktScraper.WebApi", "TransferMarktScraper.WebApi\TransferMarktScraper.WebApi.csproj", "{2FAE6714-3998-45AF-8817-07E2A15D7324}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TransferMarktScraper.Core", "TransferMarktScraper.Core\TransferMarktScraper.Core.csproj", "{5D52BEAE-EA03-4B2D-81F8-20C7498BEF83}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{2FAE6714-3998-45AF-8817-07E2A15D7324}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2FAE6714-3998-45AF-8817-07E2A15D7324}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2FAE6714-3998-45AF-8817-07E2A15D7324}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2FAE6714-3998-45AF-8817-07E2A15D7324}.Release|Any CPU.Build.0 = Release|Any CPU
+		{5D52BEAE-EA03-4B2D-81F8-20C7498BEF83}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5D52BEAE-EA03-4B2D-81F8-20C7498BEF83}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5D52BEAE-EA03-4B2D-81F8-20C7498BEF83}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5D52BEAE-EA03-4B2D-81F8-20C7498BEF83}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {E5128CE1-1131-44BE-8F34-EB344D6FB1BB}
+	EndGlobalSection
+EndGlobal
