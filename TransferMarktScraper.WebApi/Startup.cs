@@ -7,13 +7,13 @@ using Microsoft.OpenApi.Models;
 using TransferMarktScraper.WebApi.Services;
 using TransferMarktScraper.WebApi.Services.Interfaces;
 using TransferMarktScraper.Core;
+using Serilog;
 
 namespace TransferMarktScraper.WebApi
 {
     public class Startup
     {
         public IConfiguration Configuration { get; }
-
         public Startup(IConfiguration configuration)
         {
             Configuration = configuration;
@@ -23,7 +23,7 @@ namespace TransferMarktScraper.WebApi
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddControllers();
-            services.Configure<DbConfig>(Configuration);
+            services.Configure<DbConfig>(Configuration.GetSection("environmentVariables"));
             services.RegisterServices();
             services.AddSwaggerGen(c =>
             {
@@ -34,19 +34,19 @@ namespace TransferMarktScraper.WebApi
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
         {
+            app.UseExceptionHandler("/Errors");
             if (env.IsDevelopment())
             {
-                app.UseDeveloperExceptionPage();
+                //app.UseDeveloperExceptionPage();
                 app.UseSwagger();
                 app.UseSwaggerUI(c => c.SwaggerEndpoint("/swagger/v1/swagger.json", "TransferMarktScraper.WebApi v1"));
             }
-
             app.UseHttpsRedirection();
 
+            app.UseSerilogRequestLogging();
             app.UseRouting();
 
             app.UseAuthorization();
-
             app.UseEndpoints(endpoints =>
             {
                 endpoints.MapControllers();

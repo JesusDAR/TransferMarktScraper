@@ -43,7 +43,7 @@ namespace TransferMarktScraper.WebApi.Services
         public async Task<Team> AddPlayersToTeam(Team team, IEnumerable<Player> players)
         {
             FilterDefinition<Team> filter = Builders<Team>.Filter.Eq(t => t.Id, team.Id);
-            UpdateDefinition<Team> update = Builders<Team>.Update.Set(t => t.Players, players.Select(p => ObjectId.Parse(p.Id)));
+            UpdateDefinition<Team> update = Builders<Team>.Update.Set(t => t.Players, players.Select(p => p.Id));
             await _teamServices.UpdateTeam(filter, update);
             return team;
         }
@@ -54,7 +54,7 @@ namespace TransferMarktScraper.WebApi.Services
         public async Task DeletePlayersByTeamId(string id)
         {
             Team team = await _teamServices.GetTeam(id);
-            FilterDefinition<Player> filter = Builders<Player>.Filter.In(p => ObjectId.Parse(p.Id), team.Players);
+            FilterDefinition<Player> filter = Builders<Player>.Filter.In(p => p.Id, team.Players);
             await _players.DeleteManyAsync(filter);
         }
 

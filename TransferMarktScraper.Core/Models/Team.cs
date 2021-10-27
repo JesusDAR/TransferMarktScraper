@@ -14,7 +14,7 @@ namespace TransferMarktScraper.Core.Models
         public string Image { get; set; }
         public double Value { get; set; }
         public TeamTFMData TFMData { get; set; }
-        public IEnumerable<ObjectId> Players { get; set; }
+        public IEnumerable<string> Players { get; set; }
     }
 
     public class TeamTFMData

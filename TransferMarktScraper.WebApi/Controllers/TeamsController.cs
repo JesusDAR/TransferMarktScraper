@@ -1,4 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using Serilog;
+using System;
 using System.Threading.Tasks;
 using TransferMarktScraper.WebApi.DTOs;
 using TransferMarktScraper.WebApi.Services.Interfaces;
@@ -20,6 +22,12 @@ namespace TransferMarktScraper.WebApi.Controllers
         public async Task<IActionResult> GetTeams()
         {
             return Ok(await _teamServices.GetTeams());
+        }
+
+        [HttpGet("prueba")]
+        public IActionResult Prueba()
+        {
+            return Ok("Ok");
         }
 
         [HttpGet("{id}")]
