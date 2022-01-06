@@ -125,13 +125,13 @@ namespace TransferMarktScraper.WebApi.Services
                         player.EndDate = row.QuerySelector("td:nth-child(9)").TextContent;
 
                         await AddPlayer(player);
-                        result.Message = $" { team.Name } - Success obtaining: { player.Name }";
+                        result.Message = $" { team.Name } - Success fetching: { player.Name }";
                         result.Code = (int)Constants.Code.Error;
                         players.Add(player);
                     }
                     catch (Exception e)
                     {
-                        result.Message = $" { team.Name } - Error obtaining: { (player.Name != string.Empty ? player.Name : row.Index()) }";
+                        result.Message = $" { team.Name } - Error fetching: { (player.Name != string.Empty ? player.Name : row.Index()) }";
                         result.Code = (int)Constants.Code.Error;
                     }
                     results.Results.Add(result);
@@ -141,7 +141,7 @@ namespace TransferMarktScraper.WebApi.Services
             catch (Exception e)
             {
                 ScrapeResult result = new ScrapeResult { };
-                result.Message = $"{ (team.Name != null ? team.Name : id) } - Error obtaining Players";
+                result.Message = $"{ (team.Name != null ? team.Name : id) } - Error fetching Players";
                 result.Code = (int)Constants.Code.Error;
                 results.Results.Add(result);
             }

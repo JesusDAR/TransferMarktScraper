@@ -74,12 +74,12 @@ namespace TransferMarktScraper.WebApi.Services
                         team.Value = value;
                         await AddTeam(team);
 
-                        result.Message = $"Success obtaining: { team.Name }";
+                        result.Message = $"Success fetching: { team.Name }";
                         result.Code = (int)Constants.Code.Success;
                     }
                     catch (Exception e)
                     {
-                        result.Message = $"Error obtaining: { (team.Name != string.Empty ? team.Name : row.Index()) }";
+                        result.Message = $"Error fetching: { (team.Name != string.Empty ? team.Name : row.Index()) }";
                         result.Code = (int)Constants.Code.Error;
                     }
                     results.Results.Add(result);
@@ -88,7 +88,7 @@ namespace TransferMarktScraper.WebApi.Services
             catch (Exception e)
             {
                 ScrapeResult result = new ScrapeResult { };
-                result.Message = "Error obtaining Teams";
+                result.Message = "Error fetching Teams";
                 result.Code = (int)Constants.Code.Error;
                 results.Results.Add(result);
             }

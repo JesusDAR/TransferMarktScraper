@@ -85,13 +85,13 @@ namespace TransferMarktScraper.WebApi.Services
                 await AddMarketValue(marketValue);
                 await AddMarketValueToPlayer(player, marketValue);
 
-                result.Message = $"Success obtaining: { player.Name } market value";
+                result.Message = $"Success fetching: { player.Name } market value";
                 result.Code = (int)Constants.Code.Success;
                 results.Results.Add(result);
             }
             catch (Exception e)
             {
-                result.Message = $"Error obtaining: { (player != null ? player.Name : id)} market value";
+                result.Message = $"Error fetching: { (player != null ? player.Name : id)} market value";
                 result.Code = (int)Constants.Code.Error;
                 results.Results.Add(result);
             }

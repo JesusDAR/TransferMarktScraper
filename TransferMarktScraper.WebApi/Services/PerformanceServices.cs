@@ -63,13 +63,13 @@ namespace TransferMarktScraper.WebApi.Services
 
                 await AddPerformance(performance);
                 await AddPerformanceToPlayer(player, performance);
-                result.Message = $"Success obtaining: { player.Name } performance";
+                result.Message = $"Success fetching: { player.Name } performance";
                 result.Code = (int)Constants.Code.Success;
                 results.Results.Add(result);
             }
             catch (Exception e)
             {
-                result.Message = $"Error obtaining: { (player != null ? player.Name : id)} performance";
+                result.Message = $"Error fetching: { (player != null ? player.Name : id)} performance";
                 result.Code = (int)Constants.Code.Error;
                 results.Results.Add(result);
             }
