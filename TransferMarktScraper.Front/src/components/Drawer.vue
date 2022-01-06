@@ -1,8 +1,7 @@
 <template>
-    <!-- <q-drawer v-model="$store.state.drawer" show-if-above side="left" elevated :width="220" class="bg-grey-3"> -->
     <q-drawer v-model="getDrawer" show-if-above side="left" elevated :width="220" class="bg-grey-3">
         <q-list>
-            <q-item clickable :active="false" to="/scraper" exact v-ripple>
+            <q-item clickable :active="false" to="/teams/scraper" exact v-ripple>
                 <q-item-section avatar>
                     <q-icon name="download" />
                 </q-item-section>

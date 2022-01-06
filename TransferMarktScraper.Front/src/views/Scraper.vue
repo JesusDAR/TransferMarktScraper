@@ -1,13 +1,56 @@
 <template>
-  <p>eee</p>
+  <Container>
+    <div class="row">
+      <div class="col-6 q-pa-md">
+        <q-input
+          v-model="text"
+          label="Successes"
+          filled
+          readonly
+          rows="30"
+          type="textarea"
+        />
+      </div>
+      <div class="col-6 q-pa-md">
+        <q-input
+          v-model="text"
+          label="Errors"
+          filled
+          readonly
+          rows="30"
+          type="textarea"
+        />
+      </div>
+    </div>
+    <div class="row justify-center">
+      <q-btn color="primary" label="Start Scraping" @click="scrape"/>
+    </div>
+  </Container>
 </template>
 
 <script>
+import Container from '@/components/Container.vue'
 export default {
-    name: 'Scraper'
+  name: 'Scraper',
+  components: {
+    Container
+  },
+  data() {
+    return {
+      text: ""
+    }
+  },
+  methods: {
+    scrape() {
+      this.$store.dispatch('scrape')
+    }
+  }
 }
 </script>
 
 <style>
+  .q-textarea .q-field__native {
+    resize: none;
+  }
 
 </style>

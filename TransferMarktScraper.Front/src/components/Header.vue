@@ -11,7 +11,7 @@
         <q-tabs align="left" class="bg-green-9">
             <q-route-tab to="/teams" label="Teams" />
             <q-route-tab to="/search-player" label="Search Player" />
-      </q-tabs>
+        </q-tabs>
 
     </q-header>    
 </template>

@@ -2,7 +2,8 @@ import { createStore } from 'vuex'
 
 export default createStore({
   state: {
-    drawer: false
+    drawer: false,
+    info: {}
   },
   mutations: {
     setDrawer(state, drawer){
@@ -10,6 +11,9 @@ export default createStore({
     },
   },
   actions: {
+    scrape(context){
+      
+    }
   },
   modules: {
   }

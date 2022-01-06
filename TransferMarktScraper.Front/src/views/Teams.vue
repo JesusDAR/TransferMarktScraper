@@ -1,5 +1,6 @@
 <template>
-  <Drawer/>
+    <Drawer/>
+    <router-view />
 </template>
 
 <script>
