@@ -2,11 +2,13 @@
 using System.Threading.Tasks;
 using TransferMarktScraper.WebApi.DTOs;
 using TransferMarktScraper.WebApi.Services.Interfaces;
+using Microsoft.AspNetCore.Cors;
 
 namespace TransferMarktScraper.WebApi.Controllers
 {
     [ApiController]
     [Route("/api/players")]
+    [EnableCors("CorsPolicy")]
     public class PlayersController : ControllerBase
     {
         private readonly IPlayerServices _playerServices;

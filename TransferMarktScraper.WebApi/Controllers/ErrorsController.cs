@@ -7,12 +7,14 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Cors;
 
 namespace TransferMarktScraper.WebApi.Controllers
 {
     [ApiController]
     [ApiExplorerSettings(IgnoreApi = true)]
     [Route("/errors")]
+    [EnableCors("CorsPolicy")]
     public class ErrorController : ControllerBase
     {
         [HttpGet]

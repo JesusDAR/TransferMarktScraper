@@ -2,11 +2,13 @@
 using System.Threading.Tasks;
 using TransferMarktScraper.Core.Models;
 using TransferMarktScraper.WebApi.Services.Interfaces;
+using Microsoft.AspNetCore.Cors;
 
 namespace TransferMarktScraper.WebApi.Controllers
 {
     [ApiController]
     [Route("/api/market-values")]
+    [EnableCors("CorsPolicy")]
     public class MarketValuesController : ControllerBase
     {
         private readonly IMarketValueServices _marketValueServices;

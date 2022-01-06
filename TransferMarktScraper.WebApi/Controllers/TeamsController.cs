@@ -4,11 +4,13 @@ using System;
 using System.Threading.Tasks;
 using TransferMarktScraper.WebApi.DTOs;
 using TransferMarktScraper.WebApi.Services.Interfaces;
+using Microsoft.AspNetCore.Cors;
 
 namespace TransferMarktScraper.WebApi.Controllers
 {
     [ApiController]
     [Route("/api/teams")]
+    [EnableCors("CorsPolicy")]
     public class TeamsController : ControllerBase
     {
         private readonly ITeamServices _teamServices;
@@ -27,7 +29,7 @@ namespace TransferMarktScraper.WebApi.Controllers
         [HttpGet("prueba")]
         public IActionResult Prueba()
         {
-            return Ok("Ok");
+            return Ok(new object { });
         }
 
         [HttpGet("{id}")]

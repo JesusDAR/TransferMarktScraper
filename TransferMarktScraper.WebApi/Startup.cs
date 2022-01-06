@@ -23,6 +23,15 @@ namespace TransferMarktScraper.WebApi
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddControllers();
+            services.AddCors(options =>
+            {
+                options.AddPolicy("CorsPolicy",
+                    builder => builder.AllowAnyOrigin()
+                    .AllowAnyMethod()
+                    .AllowAnyHeader()
+                    .AllowCredentials().WithOrigins("http://localhost:8080", "http://localhost:8081")
+                    );
+            });
             services.Configure<DbConfig>(Configuration.GetSection("environmentVariables"));
             services.RegisterServices();
             services.AddSwaggerGen(c =>
@@ -42,9 +51,9 @@ namespace TransferMarktScraper.WebApi
                 app.UseSwaggerUI(c => c.SwaggerEndpoint("/swagger/v1/swagger.json", "TransferMarktScraper.WebApi v1"));
             }
             app.UseHttpsRedirection();
-
             app.UseSerilogRequestLogging();
             app.UseRouting();
+            app.UseCors();
 
             app.UseAuthorization();
             app.UseEndpoints(endpoints =>
