@@ -1,0 +1,32 @@
+{
+  "name": "transfermarktscraper.front",
+  "version": "0.1.0",
+  "private": true,
+  "scripts": {
+    "serve": "vue-cli-service serve",
+    "build": "vue-cli-service build"
+  },
+  "dependencies": {
+    "@quasar/extras": "^1.12.2",
+    "core-js": "^3.19.3",
+    "quasar": "^2.3.4",
+    "vue": "^3.2.24",
+    "vue-router": "^4.0.0-0",
+    "vuex": "^4.0.0-0"
+  },
+  "devDependencies": {
+    "@vue/cli-plugin-babel": "~4.5.0",
+    "@vue/cli-plugin-router": "^4.5.15",
+    "@vue/cli-plugin-vuex": "^4.5.15",
+    "@vue/cli-service": "~4.5.0",
+    "@vue/compiler-sfc": "^3.2.24",
+    "sass": "1.32.12",
+    "sass-loader": "^10.1.0",
+    "vue-cli-plugin-quasar": "^4.0.4"
+  },
+  "browserslist": [
+    "> 1%",
+    "last 2 versions",
+    "not dead"
+  ]
+}
