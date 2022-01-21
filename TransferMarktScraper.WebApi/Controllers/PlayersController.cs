@@ -20,29 +20,29 @@ namespace TransferMarktScraper.WebApi.Controllers
         [HttpGet]
         public async Task<IActionResult> GetPlayers()
         {
-            return Ok(await _playerServices.GetPlayers());
+            return Ok(await _playerServices.GetAll());
         }
         [HttpGet("teams/{id}")]
         public async Task<IActionResult> GetPlayersByTeamId(string id)
         {
-            return Ok(await _playerServices.GetPlayersByTeamId(id));
+            return Ok(await _playerServices.GetAllByTeamId(id));
         }
         [HttpDelete]
         public async Task<IActionResult> DeletePlayers()
         {
-            await _playerServices.DeletePlayers();
+            await _playerServices.DeleteAll();
             return NoContent();
         }
         [HttpDelete("teams/{id}")]
         public async Task<IActionResult> DeletePlayersByTeamId(string id)
         {
-            await _playerServices.DeletePlayersByTeamId(id);
+            await _playerServices.DeleteAllByTeamId(id);
             return NoContent();
         }
         [HttpPost("scrape/teams/{id}")]
         public async Task<IActionResult> ScrapePlayersByTeamId(string id)
         {
-            ScrapeResults results = await _playerServices.ScrapePlayersByTeamId(id);
+            ScrapeResults results = await _playerServices.ScrapeByTeamId(id);
             return Ok(results);
         }
     }

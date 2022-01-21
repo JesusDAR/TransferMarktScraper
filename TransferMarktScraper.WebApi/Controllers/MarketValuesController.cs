@@ -20,13 +20,13 @@ namespace TransferMarktScraper.WebApi.Controllers
         [HttpGet("players/{id}")]
         public async Task<IActionResult> GetMarketValueByPlayerId(string id)
         {
-            return Ok(await _marketValueServices.GetMarketValueByPlayerId(id));
+            return Ok(await _marketValueServices.GetByPlayerId(id));
         }
 
         [HttpPost("scrape/players/{id}")]
         public async Task<IActionResult> ScrapeMarketValueByPlayerId(string id)
         {
-            return Ok(await _marketValueServices.ScrapeMarketValueByPlayerId(id));
+            return Ok(await _marketValueServices.ScrapeByPlayerId(id));
         }
     }
 }

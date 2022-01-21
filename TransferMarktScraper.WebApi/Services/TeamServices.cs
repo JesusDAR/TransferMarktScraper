@@ -23,24 +23,24 @@ namespace TransferMarktScraper.WebApi.Services
             _teams = dbContext.GetTeamsCollection();
         }
 
-        public async Task<IList<Team>> GetTeams()
+        public async Task<Team> Get(string id) => (await _teams.FindAsync(team => team.Id == id)).FirstOrDefault();
+        public async Task<IList<Team>> GetAll()
         {
             IList<Team> teams = (await _teams.FindAsync(team => true)).ToList();
             return teams;
         }
-        public async Task<Team> GetTeam(string id) => (await _teams.FindAsync(team => team.Id == id)).FirstOrDefault();
 
-        public async Task<Team> AddTeam(Team team)
+        public async Task<Team> Add(Team team)
         {
             await _teams.InsertOneAsync(team);
             return team;
         }
 
-        public async Task UpdateTeam(FilterDefinition<Team> filter, UpdateDefinition<Team> update) => await _teams.UpdateOneAsync(filter, update);
+        public async Task Update(FilterDefinition<Team> filter, UpdateDefinition<Team> update) => await _teams.UpdateOneAsync(filter, update);
 
-        public async Task DeleteTeams() => await _teams.DeleteManyAsync(team => true);
+        public async Task DeleteAll() => await _teams.DeleteManyAsync(team => true);
 
-        public async Task<ScrapeResults> ScrapeTeams()
+        public async Task<ScrapeResults> Scrape()
         {
             ScrapeResults results = new ScrapeResults() { Results = new List<ScrapeResult>() };
             try
@@ -72,7 +72,7 @@ namespace TransferMarktScraper.WebApi.Services
                         if (!double.TryParse(valueString, out double value))
                             value = 0;
                         team.Value = value;
-                        await AddTeam(team);
+                        await Add(team);
 
                         result.Message = $"Success fetching: { team.Name }";
                         result.Code = (int)Constants.Code.Success;

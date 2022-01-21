@@ -9,9 +9,10 @@ namespace TransferMarktScraper.WebApi.Services.Interfaces
 {
     public interface IPerformanceServices
     {
-        Task<Performance> GetPerformanceByPlayerId(string id);
-        Task<Performance> AddPerformance(Performance performance);
-        Task<Player> AddPerformanceToPlayer(Player player, Performance performance);
-        Task<ScrapeResults> ScrapePerformanceByPlayerId(string id);
+        Task<Performance> GetByPlayerId(string id);
+        Task<Performance> Add(Performance performance);
+        Task<Player> AddToPlayer(Player player, Performance performance);
+        Task<ScrapeResults> ScrapePlayerId(string id);
+        Task DeleteAll();
     }
 }

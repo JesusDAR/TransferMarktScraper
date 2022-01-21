@@ -22,26 +22,28 @@ namespace TransferMarktScraper.WebApi.Services
             _performances = dbContext.GetPerformancesCollection();
             _playerServices = playerServices;
         }
-        public async Task<Performance> GetPerformanceByPlayerId(string id)
+        public async Task<Performance> GetByPlayerId(string id)
         {
-            Player player = await _playerServices.GetPlayer(id);
+            Player player = await _playerServices.Get(id);
             FilterDefinition<Performance> filter = Builders<Performance>.Filter.Eq(per => per.Id, player.Performance);
             Performance performance = (await _performances.FindAsync(filter)).FirstOrDefault();
             return performance;
         }
-        public async Task<Performance> AddPerformance(Performance performance)
+        public async Task<Performance> Add(Performance performance)
         {
             await _performances.InsertOneAsync(performance);
             return performance;
         }
-        public async Task<Player> AddPerformanceToPlayer(Player player, Performance performance)
+        public async Task<Player> AddToPlayer(Player player, Performance performance)
         {
             FilterDefinition<Player> filter = Builders<Player>.Filter.Eq(p => p.Id, player.Id);
             UpdateDefinition<Player> update = Builders<Player>.Update.Set(p => p.Performance, performance.Id);
-            await _playerServices.UpdatePlayer(filter, update);
+            await _playerServices.Update(filter, update);
             return player;
         }
-        public async Task<ScrapeResults> ScrapePerformanceByPlayerId(string id)
+
+        public async Task DeleteAll() => await _performances.DeleteManyAsync(p => true);
+        public async Task<ScrapeResults> ScrapePlayerId(string id)
         {
             ScrapeResults results = new ScrapeResults() { Results = new List<ScrapeResult>() };
             ScrapeResult result = new ScrapeResult { };
@@ -52,7 +54,7 @@ namespace TransferMarktScraper.WebApi.Services
                 IConfiguration config = Configuration.Default.WithDefaultLoader();
                 IBrowsingContext context = BrowsingContext.New(config);
 
-                player = await _playerServices.GetPlayer(id);
+                player = await _playerServices.Get(id);
 
                 IDocument doc = await context.OpenAsync(Constants.Transfermarkt + "/" + player.TFMData.Name + "/leistungsdatendetails/spieler/" + player.TFMData.Id + Constants.Ampliado);
 
@@ -61,8 +63,8 @@ namespace TransferMarktScraper.WebApi.Services
                 else
                     ScrapePerformanceFieldPlayer(doc, performance);
 
-                await AddPerformance(performance);
-                await AddPerformanceToPlayer(player, performance);
+                await Add(performance);
+                await AddToPlayer(player, performance);
                 result.Message = $"Success fetching: { player.Name } performance";
                 result.Code = (int)Constants.Code.Success;
                 results.Results.Add(result);

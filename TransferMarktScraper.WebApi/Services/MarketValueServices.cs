@@ -24,38 +24,38 @@ namespace TransferMarktScraper.WebApi.Services
             _marketValues = dbContext.GetMarketValuesCollection();
             _playerServices = playerServices;
         }
-        public async Task<MarketValue> GetMarketValueByPlayerId(string id)
+        public async Task<MarketValue> GetByPlayerId(string id)
         {
-            Player player = await _playerServices.GetPlayer(id);
+            Player player = await _playerServices.Get(id);
             FilterDefinition<MarketValue> filter = Builders<MarketValue>.Filter.Eq(mv => mv.Id, player.MarketValue);
             MarketValue marketValue = (await _marketValues.FindAsync(filter)).FirstOrDefault();
             return marketValue;
         }
-        public async Task<MarketValue> AddMarketValue(MarketValue marketValue)
+        public async Task<MarketValue> Add(MarketValue marketValue)
         {
             await _marketValues.InsertOneAsync(marketValue);
             return marketValue;
         }
 
-        public async Task<Player> AddMarketValueToPlayer(Player player, MarketValue marketValue)
+        public async Task<Player> AddToPlayer(Player player, MarketValue marketValue)
         {
             FilterDefinition<Player> filter = Builders<Player>.Filter.Eq(p => p.Id, player.Id);
             UpdateDefinition<Player> update = Builders<Player>.Update.Set(p => p.MarketValue, marketValue.Id);
-            await _playerServices.UpdatePlayer(filter, update);
+            await _playerServices.Update(filter, update);
             return player;
         }
 
-        public async Task DeleteMarketValueByPlayerId(string id)
+        public async Task DeleteByPlayerId(string id)
         {
             throw new NotImplementedException();
         }
 
-        public async Task DeleteMarketValuesByPlayerIds(IEnumerable<string> ids)
+        public async Task DeleteAllByPlayerIds(IEnumerable<string> ids)
         {
             throw new NotImplementedException();
         }
 
-        public async Task<ScrapeResults> ScrapeMarketValueByPlayerId(string id)
+        public async Task<ScrapeResults> ScrapeByPlayerId(string id)
         {
             ScrapeResults results = new ScrapeResults() { Results = new List<ScrapeResult>() };
             ScrapeResult result = new ScrapeResult {};
@@ -66,7 +66,7 @@ namespace TransferMarktScraper.WebApi.Services
                 IConfiguration config = Configuration.Default.WithDefaultLoader();
                 IBrowsingContext context = BrowsingContext.New(config);
 
-                player = await _playerServices.GetPlayer(id);
+                player = await _playerServices.Get(id);
 
                 IDocument doc = await context.OpenAsync(Constants.Transfermarkt + "/" + player.TFMData.Name + "/marktwertverlauf/spieler/" + player.TFMData.Id);
 
@@ -82,8 +82,8 @@ namespace TransferMarktScraper.WebApi.Services
                     Team = item["verein"].ToString()
                 }));
 
-                await AddMarketValue(marketValue);
-                await AddMarketValueToPlayer(player, marketValue);
+                await Add(marketValue);
+                await AddToPlayer(player, marketValue);
 
                 result.Message = $"Success fetching: { player.Name } market value";
                 result.Code = (int)Constants.Code.Success;

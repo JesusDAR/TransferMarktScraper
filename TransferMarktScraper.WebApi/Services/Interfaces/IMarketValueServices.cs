@@ -7,11 +7,11 @@ namespace TransferMarktScraper.WebApi.Services.Interfaces
 {
     public interface IMarketValueServices
     {
-        Task<MarketValue> GetMarketValueByPlayerId(string id);
-        Task<MarketValue> AddMarketValue(MarketValue marketValue);
-        Task<Player> AddMarketValueToPlayer(Player player, MarketValue marketValue);
-        Task DeleteMarketValueByPlayerId(string id);
-        Task DeleteMarketValuesByPlayerIds(IEnumerable<string> ids);
-        Task<ScrapeResults> ScrapeMarketValueByPlayerId(string id);
+        Task<MarketValue> GetByPlayerId(string id);
+        Task<MarketValue> Add(MarketValue marketValue);
+        Task<Player> AddToPlayer(Player player, MarketValue marketValue);
+        Task DeleteByPlayerId(string id);
+        Task DeleteAllByPlayerIds(IEnumerable<string> ids);
+        Task<ScrapeResults> ScrapeByPlayerId(string id);
     }
 }

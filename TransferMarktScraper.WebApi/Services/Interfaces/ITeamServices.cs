@@ -8,11 +8,11 @@ namespace TransferMarktScraper.WebApi.Services.Interfaces
 {
     public interface ITeamServices
     {
-        Task<Team> GetTeam(string id);
-        Task<IList<Team>> GetTeams();
-        Task<Team> AddTeam(Team team);
-        Task UpdateTeam(FilterDefinition<Team> filter, UpdateDefinition<Team> update);
-        Task DeleteTeams();
-        Task<ScrapeResults> ScrapeTeams();
+        Task<Team> Get(string id);
+        Task<IList<Team>> GetAll();
+        Task<Team> Add(Team team);
+        Task Update(FilterDefinition<Team> filter, UpdateDefinition<Team> update);
+        Task DeleteAll();
+        Task<ScrapeResults> Scrape();
     }
 }

@@ -24,47 +24,47 @@ namespace TransferMarktScraper.WebApi.Services
             _players = dbContext.GetPlayersCollection();
             _teamServices = teamServices;
         }
-        public async Task<IEnumerable<Player>> GetPlayers() => (await _players.FindAsync(p => true)).ToEnumerable();
-        public async Task<Player> GetPlayer(string id) => (await _players.FindAsync(p => p.Id == id)).FirstOrDefault();
-        public async Task<IEnumerable<Player>> GetPlayersByTeamId(string id)
+        public async Task<Player> Get(string id) => (await _players.FindAsync(p => p.Id == id)).FirstOrDefault();
+        public async Task<IEnumerable<Player>> GetAll() => (await _players.FindAsync(p => true)).ToEnumerable();
+        public async Task<IEnumerable<Player>> GetAllByTeamId(string id)
         {
-            Team team = await _teamServices.GetTeam(id);
+            Team team = await _teamServices.Get(id);
             FilterDefinition<Player> filter = Builders<Player>.Filter.In(p => p.Id, team.Players.Select(s => s.ToString()));
             IEnumerable<Player> players = (await _players.FindAsync(filter)).ToEnumerable();
             return players;
         }
 
-        public async Task<Player> AddPlayer(Player player)
+        public async Task<Player> Add(Player player)
         {
             await _players.InsertOneAsync(player);
             return player;
         }
 
-        public async Task<Team> AddPlayersToTeam(Team team, IEnumerable<Player> players)
+        public async Task<Team> AddAllToTeam(Team team, IEnumerable<Player> players)
         {
             FilterDefinition<Team> filter = Builders<Team>.Filter.Eq(t => t.Id, team.Id);
             UpdateDefinition<Team> update = Builders<Team>.Update.Set(t => t.Players, players.Select(p => p.Id));
-            await _teamServices.UpdateTeam(filter, update);
+            await _teamServices.Update(filter, update);
             return team;
         }
 
-        public async Task UpdatePlayer(FilterDefinition<Player> filter, UpdateDefinition<Player> update) => await _players.UpdateOneAsync(filter, update);
+        public async Task Update(FilterDefinition<Player> filter, UpdateDefinition<Player> update) => await _players.UpdateOneAsync(filter, update);
 
-        public async Task DeletePlayers() => await _players.DeleteManyAsync(p => true);
-        public async Task DeletePlayersByTeamId(string id)
+        public async Task DeleteAll() => await _players.DeleteManyAsync(p => true);
+        public async Task DeleteAllByTeamId(string id)
         {
-            Team team = await _teamServices.GetTeam(id);
+            Team team = await _teamServices.Get(id);
             FilterDefinition<Player> filter = Builders<Player>.Filter.In(p => p.Id, team.Players);
             await _players.DeleteManyAsync(filter);
         }
 
-        public async Task<ScrapeResults> ScrapePlayersByTeamId(string id)
+        public async Task<ScrapeResults> ScrapeByTeamId(string id)
         {
             ScrapeResults results = new ScrapeResults() { Results = new List<ScrapeResult>() };
             Team team = new Team();
             try
             {
-                team = await _teamServices.GetTeam(id);
+                team = await _teamServices.Get(id);
                 IConfiguration config = Configuration.Default.WithDefaultLoader();
                 IBrowsingContext context = BrowsingContext.New(config);
 
@@ -79,7 +79,7 @@ namespace TransferMarktScraper.WebApi.Services
                 {
                     FilterDefinition<Team> filter = Builders<Team>.Filter.Eq(t => t.Id, team.Id);
                     UpdateDefinition<Team> update = Builders<Team>.Update.Set(team => team.TFMData.Name, nameTFM);
-                    await _teamServices.UpdateTeam(filter, update);
+                    await _teamServices.Update(filter, update);
                 }
 
                 doc = await context.OpenAsync(Constants.Transfermarkt + "/" + team.TFMData.Name + "/kader/verein/" + team.TFMData.Id + "/saison_id" + Constants.SaisonId + Constants.Ampliado);
@@ -124,7 +124,7 @@ namespace TransferMarktScraper.WebApi.Services
                         player.SigningDate = row.QuerySelector("td:nth-child(7)").TextContent;
                         player.EndDate = row.QuerySelector("td:nth-child(9)").TextContent;
 
-                        await AddPlayer(player);
+                        await Add(player);
                         result.Message = $" { team.Name } - Success fetching: { player.Name }";
                         result.Code = (int)Constants.Code.Error;
                         players.Add(player);
@@ -136,7 +136,7 @@ namespace TransferMarktScraper.WebApi.Services
                     }
                     results.Results.Add(result);
                 }
-                await AddPlayersToTeam(team, players);
+                await AddAllToTeam(team, players);
             }
             catch (Exception e)
             {

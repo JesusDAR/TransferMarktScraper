@@ -23,7 +23,7 @@ namespace TransferMarktScraper.WebApi.Controllers
         [HttpGet]
         public async Task<IActionResult> GetTeams()
         {
-            return Ok(await _teamServices.GetTeams());
+            return Ok(await _teamServices.GetAll());
         }
 
         [HttpGet("prueba")]
@@ -35,13 +35,13 @@ namespace TransferMarktScraper.WebApi.Controllers
         [HttpGet("{id}")]
         public async Task<IActionResult> GetTeam(string id)
         {
-            return Ok(await _teamServices.GetTeam(id));
+            return Ok(await _teamServices.Get(id));
         }
 
         [HttpDelete]
         public async Task<IActionResult> DeleteTeams()
         {
-            await _teamServices.DeleteTeams();
+            await _teamServices.DeleteAll();
             return NoContent();
         }
 
@@ -49,7 +49,7 @@ namespace TransferMarktScraper.WebApi.Controllers
         [HttpPost("scrape")]
         public async Task<IActionResult> ScrapeTeams()
         {
-            ScrapeResults results = await _teamServices.ScrapeTeams();
+            ScrapeResults results = await _teamServices.Scrape();
             return Ok(results);
         }
     }
