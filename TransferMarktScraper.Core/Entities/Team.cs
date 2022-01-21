@@ -3,7 +3,7 @@ using MongoDB.Bson.Serialization.Attributes;
 using System.Collections.Generic;
 
 
-namespace TransferMarktScraper.Core.Models
+namespace TransferMarktScraper.Core.Entities
 {
     public class Team
     {

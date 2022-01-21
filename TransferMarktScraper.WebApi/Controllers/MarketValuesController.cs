@@ -1,6 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using System.Threading.Tasks;
-using TransferMarktScraper.Core.Models;
 using TransferMarktScraper.WebApi.Services.Interfaces;
 using Microsoft.AspNetCore.Cors;
 

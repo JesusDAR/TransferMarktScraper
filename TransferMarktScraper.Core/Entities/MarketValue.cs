@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using MongoDB.Bson;
 
-namespace TransferMarktScraper.Core.Models
+namespace TransferMarktScraper.Core.Entities
 { 
     public class MarketValue
     {

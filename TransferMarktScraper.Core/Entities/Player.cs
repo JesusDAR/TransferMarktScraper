@@ -2,7 +2,7 @@
 using MongoDB.Bson;
 using MongoDB.Bson.Serialization.Attributes;
 
-namespace TransferMarktScraper.Core.Models
+namespace TransferMarktScraper.Core.Entities
 {
     public class Player
     {

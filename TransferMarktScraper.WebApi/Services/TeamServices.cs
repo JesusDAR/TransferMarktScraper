@@ -8,7 +8,7 @@ using System.Linq;
 using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using TransferMarktScraper.Core;
-using TransferMarktScraper.Core.Models;
+using TransferMarktScraper.Core.Entities;
 using TransferMarktScraper.WebApi.DTOs;
 using TransferMarktScraper.WebApi.Services.Interfaces;
 

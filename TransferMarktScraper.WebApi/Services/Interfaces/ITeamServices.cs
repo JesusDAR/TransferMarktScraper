@@ -1,7 +1,7 @@
 ﻿using MongoDB.Driver;
 using System.Collections.Generic;
 using System.Threading.Tasks;
-using TransferMarktScraper.Core.Models;
+using TransferMarktScraper.Core.Entities;
 using TransferMarktScraper.WebApi.DTOs;
 
 namespace TransferMarktScraper.WebApi.Services.Interfaces

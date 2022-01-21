@@ -3,7 +3,7 @@ using AngleSharp.Dom;
 using System.Threading.Tasks;
 using System.Linq;
 using TransferMarktScraper.Core;
-using TransferMarktScraper.Core.Models;
+using TransferMarktScraper.Core.Entities;
 using TransferMarktScraper.WebApi.Services.Interfaces;
 using System.Text.RegularExpressions;
 using Newtonsoft.Json.Linq;

@@ -6,7 +6,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace TransferMarktScraper.Core.Models
+namespace TransferMarktScraper.Core.Entities
 {
     public class Performance
     {

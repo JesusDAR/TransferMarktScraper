@@ -3,7 +3,7 @@ using Microsoft.Extensions.Options;
 using MongoDB.Driver;
 using Serilog;
 using System;
-using TransferMarktScraper.Core.Models;
+using TransferMarktScraper.Core.Entities;
 
 namespace TransferMarktScraper.Core
 {
