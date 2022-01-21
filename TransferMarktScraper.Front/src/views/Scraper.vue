@@ -3,7 +3,7 @@
     <div class="row">
       <div class="col-6 q-pa-md">
         <q-input
-          v-model="text"
+          v-model="$store.state.successOutput"
           label="Successes"
           filled
           readonly
@@ -13,7 +13,7 @@
       </div>
       <div class="col-6 q-pa-md">
         <q-input
-          v-model="text"
+          v-model="$store.state.errorOutput"
           label="Errors"
           filled
           readonly
@@ -30,6 +30,7 @@
 
 <script>
 import Container from '@/components/Container.vue'
+
 export default {
   name: 'Scraper',
   components: {
@@ -41,8 +42,8 @@ export default {
     }
   },
   methods: {
-    scrape() {
-      this.$store.dispatch('scrape')
+    async scrape() {
+      await this.$store.dispatch('scrapeTeams')
     }
   }
 }
