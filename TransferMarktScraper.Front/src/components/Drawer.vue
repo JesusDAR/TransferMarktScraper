@@ -9,16 +9,18 @@
                     Scrape Teams
                 </q-item-section>
             </q-item>
-            <q-separator/>
-            <!-- <q-item clickable :active="false" to="/browser" exact v-ripple>
-                <q-item-section avatar>
-                    <q-icon name="search" />
-                </q-item-section>
-                <q-item-section>
-                    Browse Data
-                </q-item-section>
-            </q-item>                
-            <q-separator/> -->
+            <template v-for="(team, index) in $store.state.teams">
+                <q-item clickable :active="false" to="/teams/scraper" exact v-ripple>
+                    <q-item-section avatar>
+                        <q-icon :name="'img:' + team.image" />
+                    </q-item-section>
+                    <q-item-section>
+                        {{ team.name }}
+                    </q-item-section>
+                </q-item>
+                <q-separator/>
+            </template>
+
         </q-list>
       </q-drawer>  
 </template>

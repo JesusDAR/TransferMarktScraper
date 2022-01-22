@@ -9,7 +9,7 @@ namespace TransferMarktScraper.WebApi.Services.Interfaces
     public interface ITeamServices
     {
         Task<Team> Get(string id);
-        Task<IList<Team>> GetAll();
+        Task<IEnumerable<Team>> GetAll();
         Task<Team> Add(Team team);
         Task Update(FilterDefinition<Team> filter, UpdateDefinition<Team> update);
         Task DeleteAll();

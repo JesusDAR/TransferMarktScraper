@@ -6,8 +6,8 @@
 <script>
 import Drawer from '@/components/Drawer.vue'
 export default {
-    name: 'Teams',
-    components: { 
+    name : 'Teams',
+    components : { 
         Drawer 
     },
 }

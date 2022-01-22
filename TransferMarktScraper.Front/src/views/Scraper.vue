@@ -32,8 +32,8 @@
 import Container from '@/components/Container.vue'
 
 export default {
-  name: 'Scraper',
-  components: {
+  name : 'Scraper',
+  components : {
     Container
   },
   data() {
@@ -41,9 +41,10 @@ export default {
       text: ""
     }
   },
-  methods: {
+  methods : {
     async scrape() {
-      await this.$store.dispatch('scrapeTeams')
+      // await this.$store.dispatch('scrapeTeams')
+      await this.$store.dispatch('getTeams')
     }
   }
 }
@@ -51,7 +52,7 @@ export default {
 
 <style>
   .q-textarea .q-field__native {
-    resize: none;
+    resize : none;
   }
 
 </style>

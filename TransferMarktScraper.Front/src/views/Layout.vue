@@ -26,8 +26,8 @@ import Header from '@/components/Header.vue'
 import Drawer from '@/components/Drawer.vue'
 
 export default {
-    name: 'Layout',
-    components: {
+    name : 'Layout',
+    components : {
         Footer,
         Header,
         Drawer

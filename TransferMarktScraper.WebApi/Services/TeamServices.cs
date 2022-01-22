@@ -24,11 +24,7 @@ namespace TransferMarktScraper.WebApi.Services
         }
 
         public async Task<Team> Get(string id) => (await _teams.FindAsync(team => team.Id == id)).FirstOrDefault();
-        public async Task<IList<Team>> GetAll()
-        {
-            IList<Team> teams = (await _teams.FindAsync(team => true)).ToList();
-            return teams;
-        }
+        public async Task<IEnumerable<Team>> GetAll() => (await _teams.FindAsync(team => true)).ToEnumerable().OrderBy(s => s.Name);
 
         public async Task<Team> Add(Team team)
         {

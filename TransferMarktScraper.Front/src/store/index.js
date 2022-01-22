@@ -17,7 +17,10 @@ export default createStore({
     }, 
     setErrorOutput(state, errorOutput){
       state.errorOutput = errorOutput
-    },    
+    },
+    setTeams(state, teams){
+      state.teams = teams
+    },         
   },
   actions : {
     async scrapeTeams(context){
@@ -29,7 +32,17 @@ export default createStore({
       }).catch( (error) => {
         console.log(error)
       })
-    }
+    },
+
+    async getTeams(context){
+      return axios.get(process.env.VUE_APP_URL + "/teams").then((response) => {
+        console.log(response)
+        let teams = response.data
+        context.commit('setTeams', teams)
+      }).catch( (error) => {
+        console.log(error)
+      })
+    }    
   },
   modules: {
   }
