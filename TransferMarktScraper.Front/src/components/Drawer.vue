@@ -1,5 +1,5 @@
 <template>
-    <q-drawer v-model="getDrawer" show-if-above side="left" elevated :width="220" class="bg-grey-3">
+    <q-drawer show-if-above side="left" elevated :width="220" class="bg-grey-3">
         <q-list>
             <q-item clickable :active="false" to="/teams/scraper" exact v-ripple>
                 <q-item-section avatar>
@@ -26,12 +26,6 @@
 <script>
 export default {
     name: 'Drawer',
-    methods: {
-        getDrawer() {
-            console.log($store.state.drawer)
-            return $store.state.drawer
-        }
-    }
 }
 </script>
 
