@@ -92,7 +92,7 @@ namespace TransferMarktScraper.WebApi.Services
                     ScrapeResult result = new ScrapeResult { };
                     try
                     {
-                        player.Name = row.QuerySelector("td:nth-child(2) table td:nth-child(2) a").TextContent;
+                        player.Name = row.QuerySelector("td:nth-child(2) table td:nth-child(2) a").TextContent.Replace("\n", "").Trim();
                         string numberString = row.QuerySelector("td:first-child div").TextContent;
                         if (!int.TryParse(numberString, out int number))
                             number = 0;
@@ -104,11 +104,13 @@ namespace TransferMarktScraper.WebApi.Services
                         player.TFMData.Name = match.Groups[1].Value;
                         player.TFMData.Id = match.Groups[2].Value;
 
-                        player.Position = row.QuerySelector("td:nth-child(2) table tr:nth-child(2) td").TextContent;
+                        player.Position = row.QuerySelector("td:nth-child(2) table tr:nth-child(2) td").TextContent.Replace("\n", "").Trim();
 
                         string date = row.QuerySelector("td:nth-child(3)").TextContent;
-                        player.DateOfBirth = date.Split()[0];
-                        string ageString = date.Split()[1].Replace("(", string.Empty).Replace(")", string.Empty);
+                        string regex = "(\\(.*\\))";
+                        player.DateOfBirth = Regex.Replace(date, regex, "");
+                        match = Regex.Match(date, regex);
+                        string ageString = match.Groups[1].Value.Replace("(", string.Empty).Replace(")", string.Empty);
                         if (!int.TryParse(ageString, out int age))
                             age = 0;
                         player.Age = age;
@@ -126,7 +128,7 @@ namespace TransferMarktScraper.WebApi.Services
 
                         await Add(player);
                         result.Message = $" { team.Name } - Success fetching: { player.Name }";
-                        result.Code = (int)Constants.Code.Error;
+                        result.Code = (int)Constants.Code.Success;
                         players.Add(player);
                     }
                     catch (Exception e)
