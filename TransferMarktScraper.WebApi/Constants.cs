@@ -7,7 +7,7 @@ namespace TransferMarktScraper.WebApi
 {
     public static class Constants
     {
-        public static string SaisonId = "/" + DateTime.Today.Year.ToString();
+        public static string SaisonId = "/2021";
         
         public static readonly string Transfermarkt = "https://www.transfermarkt.es";
         public static readonly string LaLiga = "/laliga/startseite/wettbewerb/ES1";
@@ -18,7 +18,6 @@ namespace TransferMarktScraper.WebApi
             Success = 0,
             Error = 1
         }
-        //public static readonly string AmpliadoPerformance = "//saison/verein/0/liga/0/wettbewerb//pos/0/trainer_id/0/plus/1";
 
     }
 }
