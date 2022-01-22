@@ -39,7 +39,7 @@ namespace TransferMarktScraper.WebApi.Controllers
             await _playerServices.DeleteAllByTeamId(id);
             return NoContent();
         }
-        [HttpPost("scrape/teams/{id}")]
+        [HttpGet("scrape/teams/{id}")]
         public async Task<IActionResult> ScrapePlayersByTeamId(string id)
         {
             ScrapeResults results = await _playerServices.ScrapeByTeamId(id);

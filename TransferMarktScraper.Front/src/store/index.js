@@ -3,7 +3,7 @@ import axios from 'axios'
 
 export default createStore({
   state : {
-    url : "https://localhost:44379/api",
+    url : "http://localhost:44379/api",
     successCode : 0,
     errorCode : 1,
 
@@ -22,7 +22,7 @@ export default createStore({
   },
   actions : {
     async scrapeTeams(context){
-      return axios.post(this.state.url + "/teams/scrape", {}).then((response) => {
+      return axios.get(this.state.url + "/teams/scrape").then((response) => {
         console.log(response)
         let successes = response.data.results.filter( r => r.code === this.state.successCode ).map( r => r.message ).join('\r\n')   
         console.log(successes)     

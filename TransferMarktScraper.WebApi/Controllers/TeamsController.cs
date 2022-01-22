@@ -46,7 +46,7 @@ namespace TransferMarktScraper.WebApi.Controllers
         }
 
 
-        [HttpPost("scrape")]
+        [HttpGet("scrape")]
         public async Task<IActionResult> ScrapeTeams()
         {
             ScrapeResults results = await _teamServices.Scrape();
