@@ -11,6 +11,7 @@ const routes = [
     children: [
       {
         path: 'teams',
+        name: 'teams',
         component: Teams,
         title: 'Teams',
         children: [
