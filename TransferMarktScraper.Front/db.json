@@ -1,0 +1,86 @@
+{
+    "teams-scrape":{
+        "results":[
+        {
+            "message":"Success fetching: Real Madrid CF",
+            "code":0
+        },
+        {
+            "message":"Success fetching: Atlético de Madrid",
+            "code":0
+        },
+        {
+            "message":"Success fetching: FC Barcelona",
+            "code":0
+        },
+        {
+            "message":"Error fetching: Real Sociedad",
+            "code":1
+        },
+        {
+            "message":"Error fetching: Sevilla FC",
+            "code":1
+        },
+        {
+            "message":"Success fetching: Villarreal CF",
+            "code":0
+        },
+        {
+            "message":"Success fetching: Valencia CF",
+            "code":0
+        },
+        {
+            "message":"Success fetching: Real Betis Balompié",
+            "code":0
+        },
+        {
+            "message":"Success fetching: Athletic Club",
+            "code":0
+        },
+        {
+            "message":"Success fetching: Getafe CF",
+            "code":0
+        },
+        {
+            "message":"Success fetching: RC Celta de Vigo",
+            "code":0
+        },
+        {
+            "message":"Success fetching: RCD Espanyol",
+            "code":0
+        },
+        {
+            "message":"Success fetching: CA Osasuna",
+            "code":0
+        },
+        {
+            "message":"Success fetching: Granada CF",
+            "code":0
+        },
+        {
+            "message":"Success fetching: Levante UD",
+            "code":0
+        },
+        {
+            "message":"Success fetching: RCD Mallorca",
+            "code":0
+        },
+        {
+            "message":"Success fetching: Deportivo Alavés",
+            "code":0
+        },
+        {
+            "message":"Success fetching: Cádiz CF",
+            "code":0
+        },
+        {
+            "message":"Success fetching: Rayo Vallecano",
+            "code":0
+        },
+        {
+            "message":"Success fetching: Elche CF",
+            "code":0
+        }
+        ]
+    }
+ }
