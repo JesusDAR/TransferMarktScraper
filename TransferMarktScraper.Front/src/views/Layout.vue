@@ -17,8 +17,6 @@ export default {
         Footer,
         Header
     },
-    data () {
-    }
 }
 </script>
 
