@@ -5,17 +5,17 @@
   "scripts": {
     "serve": "vue-cli-service serve",
     "build": "vue-cli-service build",
-    "mock" : "vue-cli-service serve --mode mock",  
-    "json" : "json-server --watch db.json --port 44700 --routes routes.json",
+    "mock": "vue-cli-service serve --mode mock",
+    "json": "json-server --watch db.json --port 44700 --routes routes.json",
     "test": "start npm run mock && start npm run json"
   },
   "dependencies": {
-    "@quasar/extras": "^1.12.2",
+    "@quasar/extras": "^1.12.5",
     "axios": "^0.24.0",
-    "core-js": "^3.19.3",
+    "core-js": "^3.21.1",
     "json-server": "^0.17.0",
-    "quasar": "^2.3.4",
-    "vue": "^3.2.24",
+    "quasar": "^2.5.5",
+    "vue": "^3.2.31",
     "vue-router": "^4.0.0-0",
     "vuex": "^4.0.0-0"
   },
