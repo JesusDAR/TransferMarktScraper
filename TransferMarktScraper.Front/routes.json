@@ -1,4 +1,6 @@
 {
-    "/api/*": "/$1",
-    "/teams/scrape" : "/teams-scrape"  
+    "/api/*" : "/$1",
+    "/teams/scrape" : "/teams-scrape" ,
+    "/teams" : "/teams",
+    "/players/scrape/teams/:id" : "/players-scrape-:id"
 }
