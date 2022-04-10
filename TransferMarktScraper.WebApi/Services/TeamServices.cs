@@ -64,7 +64,7 @@ namespace TransferMarktScraper.WebApi.Services
                         team.TFMData.Name = match.Groups[1].Value;
                         team.TFMData.Id = match.Groups[2].Value;
 
-                        string valueString = row.QuerySelector("td:nth-child(8)").TextContent.Split(' ')[0].Trim();
+                        string valueString = row.QuerySelector("td:nth-child(7)").TextContent.Split(' ')[0].Trim();
                         if (!double.TryParse(valueString, out double value))
                             value = 0;
                         team.Value = value;
