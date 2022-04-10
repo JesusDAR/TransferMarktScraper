@@ -61,13 +61,26 @@ namespace TransferMarktScraper.WebApi.Services
 
                         string pattern = @"/(.*?)/startseite/verein/(.*?)/";
                         Match match = Regex.Match(url, pattern);
+
                         team.TFMData.Name = match.Groups[1].Value;
                         team.TFMData.Id = match.Groups[2].Value;
 
+                        double age = double.Parse(row.QuerySelector("td:nth-child(4)").TextContent);
+                        team.Age = age;
+
+                        int foreigners = Int32.Parse(row.QuerySelector("td:nth-child(5)").TextContent);
+                        team.Foreigners = foreigners;
+
+                        string valuePerPlayerString = row.QuerySelector("td:nth-child(6)").TextContent.Split(' ')[0].Trim();
+                        if (!double.TryParse(valuePerPlayerString, out double valuePerPlayerDouble))
+                            valuePerPlayerDouble = 0;
+                        team.ValuePerPlayer = valuePerPlayerDouble;
+
                         string valueString = row.QuerySelector("td:nth-child(7)").TextContent.Split(' ')[0].Trim();
-                        if (!double.TryParse(valueString, out double value))
-                            value = 0;
-                        team.Value = value;
+                        if (!double.TryParse(valueString, out double valueDouble))
+                            valueDouble = 0;
+                        team.Value = valueDouble;
+
                         await Add(team);
 
                         result.Message = $"Success fetching: { team.Name }";

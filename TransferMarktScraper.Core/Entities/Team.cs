@@ -12,7 +12,10 @@ namespace TransferMarktScraper.Core.Entities
         public string Id { get; set; }
         public string Name { get; set; }
         public string Image { get; set; }
+        public int Foreigners { get; set; }
+        public double Age { get; set; }
         public double Value { get; set; }
+        public double ValuePerPlayer { get; set; }
         public TeamTFMData TFMData { get; set; }
         public IEnumerable<string> Players { get; set; }
     }
